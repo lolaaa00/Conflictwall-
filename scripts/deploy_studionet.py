@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import pathlib
-import shutil
 import subprocess
 import sys
 import urllib.request
@@ -33,10 +32,10 @@ def main() -> int:
     subprocess.run([sys.executable, "scripts/preflight.py"], cwd=ROOT, check=True)
     verify_chain()
     local_cli = ROOT / "node_modules" / ".bin" / ("genlayer.cmd" if sys.platform.startswith("win") else "genlayer")
-    cli = str(local_cli) if local_cli.exists() else shutil.which("genlayer")
-    if cli is None:
+    if not local_cli.exists():
         print("ERROR: install repo-local genlayer@0.39.1 with npm install", file=sys.stderr)
         return 2
+    cli = str(local_cli)
     subprocess.run([cli, "account", "show"], cwd=ROOT, check=True)
     subprocess.run([cli, "deploy", "--contract", str(CONTRACT), "--rpc", RPC], cwd=ROOT, check=True)
     return 0
