@@ -12,7 +12,11 @@ from gltest.accounts import get_accounts
 from gltest.assertions import tx_execution_failed, tx_execution_succeeded
 from gltest.types import TransactionStatus
 from gltest.utils import extract_contract_address
+import hashlib
 import json
+import os
+from pathlib import Path
+import subprocess
 import time
 import urllib.request
 
@@ -71,6 +75,18 @@ def test_conflictwall_history_dependent_gate():
 
     evidence = {
         "network": {"rpc": RPC, "chain_id": CHAIN_ID},
+        "actors": {"actor_a": account.address, "actor_b": actor_b_account.address},
+        "source": {
+            "commit_at_deployment": subprocess.check_output(
+                ["git", "rev-parse", "HEAD"], text=True
+            ).strip(),
+            "conflictwall_sha256": hashlib.sha256(
+                Path("contracts/conflictwall.py").read_bytes()
+            ).hexdigest(),
+            "registry_sha256": hashlib.sha256(
+                Path("contracts/protected_engagement_registry.py").read_bytes()
+            ).hexdigest(),
+        },
         "deployments": {
             "conflictwall": {"address": wall.address, "tx": wall_deploy["hash"]},
             "registry": {"address": registry.address, "tx": registry_deploy["hash"]},
@@ -153,4 +169,9 @@ def test_conflictwall_history_dependent_gate():
     assert actor_b_item["classification_name"] == "PROTECTED"
     assert wall.get_exposure(args=[1, actor_b_account.address, 1]).call()["client_id"] == 2
 
+    evidence_path = os.environ.get("CONFLICTWALL_EVIDENCE_FILE")
+    if evidence_path:
+        output = Path(evidence_path)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(evidence, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print("CONFLICTWALL_LIVE_EVIDENCE=" + json.dumps(evidence, sort_keys=True))
