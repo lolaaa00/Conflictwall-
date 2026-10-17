@@ -1,0 +1,2 @@
+# Stable Direct Mode / Studionet test tooling.
+genlayer-test @ git+https://github.com/genlayerlabs/genlayer-testing-suite@v0.29.2

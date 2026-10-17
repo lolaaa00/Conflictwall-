@@ -1,0 +1,14 @@
+{
+  "name": "conflictwall",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Standalone GenLayer semantic conflict-of-interest firewall",
+  "scripts": {
+    "genlayer": "npx --no-install genlayer",
+    "network": "npx --no-install genlayer network get",
+    "deploy": "npx --no-install genlayer deploy --contract contracts/conflictwall.py"
+  },
+  "dependencies": {
+    "genlayer": "0.39.1"
+  }
+}
