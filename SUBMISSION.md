@@ -20,6 +20,6 @@ ConflictWall is a history-dependent conflict-of-interest firewall implementing a
 - Live lifecycle evidence: **1 passed in 1426.66s**, with 28 finalized lifecycle/adversarial transactions recorded in `docs/DEPLOYMENT.md`.
 - Deployment source commit: `10276739337f9fee10dab1a87cda93245a786688`.
 - Source parity: `gen_getContractCode` returned byte-for-byte matches for both local files; SHA-256 digests are recorded in `docs/DEPLOYMENT.md`.
+- GitHub Actions: **PASS** on the published `main` branch ([quality run](https://github.com/lolaaa00/Conflictwall-/actions/runs/39062707931)).
 
-Repository publication and the GitHub Actions result remain pending until this
-finished local history is pushed to `lolaaa00/Conflictwall-`.
+The complete repository history is published to `lolaaa00/Conflictwall-`.

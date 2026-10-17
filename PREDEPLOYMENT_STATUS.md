@@ -20,8 +20,8 @@ The contract work and canonical stable-Studionet proof are complete locally.
 - deployed sources match the local contract files byte-for-byte through `gen_getContractCode`;
 - no wallet secrets are committed.
 
-## Remaining publication gate
+## Publication
 
-The authorized final GitHub destination is `lolaaa00/Conflictwall-`. The owner
-must push `main` and confirm the GitHub Actions quality job. No substitute owner
-or remote has been used.
+The complete `main` branch is published to the authorized final destination,
+`lolaaa00/Conflictwall-`. The GitHub Actions quality job passes. No substitute
+owner or remote has been used.
