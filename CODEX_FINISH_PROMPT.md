@@ -4,7 +4,7 @@ I have already unzipped the source into my local folder and opened that folder i
 
 ## Hard constraints
 
-- Final GitHub destination: `lolaaa00/conflictwall`
+- Final GitHub destination: `lolaaa00/Conflictwall-`
 - Network: stable GenLayer Studionet only
 - Chain ID: `61999`
 - RPC: `https://studio.genlayer.com/api`
@@ -212,11 +212,11 @@ Remove all `TBD` values from submission-facing evidence only after the real valu
 
 ### 13. GitHub
 
-The target repository is `lolaaa00/conflictwall`.
+The target repository is `lolaaa00/Conflictwall-`.
 
 If I have not yet created/configured it, finish everything locally and tell me the exact one-time repository/remote step I need to perform. Do not push this project under another owner as a substitute.
 
-Once the target remote exists, push the complete final repository to `lolaaa00/conflictwall`.
+Once the target remote exists, push the complete final repository to `lolaaa00/Conflictwall-`.
 
 ### 14. Final response format
 

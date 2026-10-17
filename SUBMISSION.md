@@ -10,7 +10,7 @@ ConflictWall is a history-dependent conflict-of-interest firewall implementing a
 
 ## Evidence
 
-- Repository: `https://github.com/lolaaa00/conflictwall`
+- Repository: `https://github.com/lolaaa00/Conflictwall-`
 - Stable Studionet chain: `61999`
 - Core address: [`0xbB7a6EED169F6F13A6CcAFf0B72b4dCDb5513ca5`](https://explorer-studio.genlayer.com/address/0xbB7a6EED169F6F13A6CcAFf0B72b4dCDb5513ca5)
 - Consumer address: [`0x3920e63E2b387DbBF5e12Dd38Ae56C7680002045`](https://explorer-studio.genlayer.com/address/0x3920e63E2b387DbBF5e12Dd38Ae56C7680002045)
@@ -21,5 +21,5 @@ ConflictWall is a history-dependent conflict-of-interest firewall implementing a
 - Deployment source commit: `10276739337f9fee10dab1a87cda93245a786688`.
 - Source parity: `gen_getContractCode` returned byte-for-byte matches for both local files; SHA-256 digests are recorded in `docs/DEPLOYMENT.md`.
 
-Repository publication and the GitHub Actions result remain pending until the
-owner creates `lolaaa00/conflictwall` and pushes this finished local history.
+Repository publication and the GitHub Actions result remain pending until this
+finished local history is pushed to `lolaaa00/Conflictwall-`.

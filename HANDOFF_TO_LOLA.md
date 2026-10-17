@@ -1,6 +1,6 @@
 # Handoff to Lola
 
-You are receiving a pre-deployment source package for the proposed repository `lolaaa00/conflictwall`.
+You are receiving a pre-deployment source package for the repository `lolaaa00/Conflictwall-`.
 
 ## Important
 
@@ -13,7 +13,7 @@ You are receiving a pre-deployment source package for the proposed repository `l
 ## What to do
 
 1. Unzip this package locally.
-2. Create `lolaaa00/conflictwall` on GitHub when ready.
+2. Create `lolaaa00/Conflictwall-` on GitHub when ready.
 3. Put the unzipped files into your local repo folder.
 4. Open that folder in Codex yourself.
 5. Paste `CODEX_FINISH_PROMPT.md` into Codex.

@@ -11,7 +11,7 @@ The contract work and canonical stable-Studionet proof are complete locally.
 - stable Studionet configuration is the only configured network;
 - chain target is explicitly `61999`;
 - deployment scripts assert the stable RPC/chain before deploying;
-- target GitHub owner/path in docs is `lolaaa00/conflictwall`;
+- target GitHub owner/path in docs is `lolaaa00/Conflictwall-`;
 - repository-local CLI is `genlayer@0.39.1`;
 - Direct Mode: **44 passed**;
 - GenVM lint: both contracts pass;
@@ -22,7 +22,6 @@ The contract work and canonical stable-Studionet proof are complete locally.
 
 ## Remaining publication gate
 
-The target GitHub repository did not exist when this verification was completed.
-The owner must create `lolaaa00/conflictwall`, add that URL as `origin`, push
-`main`, and confirm the GitHub Actions quality job. No substitute owner or remote
-has been used.
+The authorized final GitHub destination is `lolaaa00/Conflictwall-`. The owner
+must push `main` and confirm the GitHub Actions quality job. No substitute owner
+or remote has been used.

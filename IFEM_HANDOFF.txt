@@ -2,11 +2,11 @@ Send Lola the ZIP exactly as provided.
 
 Tell her:
 
-1. Create `lolaaa00/conflictwall` when she is ready.
+1. Create `lolaaa00/Conflictwall-` when she is ready.
 2. Unzip the package herself into a normal local folder/repository.
 3. Open that unzipped folder in Codex herself.
 4. Paste the contents of `CODEX_FINISH_PROMPT.md` into Codex.
-5. Let Codex audit and finish the existing project, run the tests/linter, deploy only to stable Studionet chain 61999, execute the real lifecycle, fill the evidence docs, and push to `lolaaa00/conflictwall` after her remote exists.
+5. Let Codex audit and finish the existing project, run the tests/linter, deploy only to stable Studionet chain 61999, execute the real lifecycle, fill the evidence docs, and push to `lolaaa00/Conflictwall-` after her remote exists.
 6. She must not add a frontend. The tiny second contract is only an integration proof.
 7. She must not accept fake addresses, tx hashes, test counts or deployment claims. `SUBMISSION READY: YES` only after real finalized evidence exists.
 

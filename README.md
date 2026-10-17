@@ -121,6 +121,6 @@ finalized transaction hashes, and deployed-source parity.
 
 The local quality gate passes 44 Direct Mode tests and both GenVM contract
 lints. The canonical stable-Studionet integration passes with every recorded
-transaction finalized. The remaining publication step is for the repository
-owner to create `lolaaa00/conflictwall`, add it as `origin`, push `main`, and
-confirm the GitHub Actions run.
+transaction finalized. The final repository destination is
+`lolaaa00/Conflictwall-`. Publication is complete only after `main` is pushed
+and the GitHub Actions run is green.
