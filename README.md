@@ -100,9 +100,9 @@ pip install -r requirements.txt
 python scripts/run_quality.py
 ```
 
-## Live proof expected before submission
+## Canonical live proof
 
-A reviewer should be able to inspect a finalized Studionet lifecycle proving all of these on the **final canonical deployment**:
+A finalized Studionet lifecycle on the canonical deployment proves all of these:
 
 1. create and seal a policy with Banking and Airlines conflict domains;
 2. Alpha Bank protected engagement resolves `ALLOWED` and locks the actor's Banking wall to Alpha;
@@ -112,6 +112,15 @@ A reviewer should be able to inspect a finalized Studionet lifecycle proving all
 6. Beta public-only work resolves `ALLOWED` without moving the wall;
 7. Aero One protected work resolves `ALLOWED` because Airlines is a separate conflict domain.
 
-## Pre-deployment status
+It additionally proves exact actor/reference/policy/consumer binding, one-time
+consumption, fail-closed ambiguous work, and Actor B's independent wall. See
+[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for addresses, explorer links,
+finalized transaction hashes, and deployed-source parity.
 
-This source package intentionally does not invent deployment addresses, transaction hashes, test counts or source-parity claims. Those must be filled from real evidence after the final repository is opened locally and deployed on stable Studionet.
+## Verification status
+
+The local quality gate passes 44 Direct Mode tests and both GenVM contract
+lints. The canonical stable-Studionet integration passes with every recorded
+transaction finalized. The remaining publication step is for the repository
+owner to create `lolaaa00/conflictwall`, add it as `origin`, push `main`, and
+confirm the GitHub Actions run.

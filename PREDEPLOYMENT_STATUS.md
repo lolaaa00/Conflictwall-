@@ -1,8 +1,8 @@
-# Pre-deployment package status
+# Final local verification status
 
-This ZIP is intentionally source-complete but not falsely marked submission-ready.
+The contract work and canonical stable-Studionet proof are complete locally.
 
-## Verified in the packaging environment
+## Verified
 
 - repository structure created;
 - no frontend/product application included;
@@ -12,17 +12,17 @@ This ZIP is intentionally source-complete but not falsely marked submission-read
 - chain target is explicitly `61999`;
 - deployment scripts assert the stable RPC/chain before deploying;
 - target GitHub owner/path in docs is `lolaaa00/conflictwall`;
-- source contains no wallet secrets, addresses or fabricated deployment evidence.
+- repository-local CLI is `genlayer@0.39.1`;
+- Direct Mode: **44 passed**;
+- GenVM lint: both contracts pass;
+- canonical stable-Studionet integration: **1 passed in 1426.66s**;
+- both canonical deployments and all 28 lifecycle/adversarial transactions reached `FINALIZED`;
+- deployed sources match the local contract files byte-for-byte through `gen_getContractCode`;
+- no wallet secrets are committed.
 
-## Not claimed here
+## Remaining publication gate
 
-The packaging sandbox could not install the GitHub-hosted GenLayer testing dependency because outbound package resolution is unavailable. Therefore this package does **not** claim:
-
-- Direct Mode green;
-- GenVM linter green;
-- live Studionet integration green;
-- deployed contract addresses;
-- finalized transaction hashes;
-- deployed-source parity.
-
-Those are explicit finish gates in `CODEX_FINISH_PROMPT.md` and must be produced on Lola's local Codex/tooling environment before submission.
+The target GitHub repository did not exist when this verification was completed.
+The owner must create `lolaaa00/conflictwall`, add that URL as `origin`, push
+`main`, and confirm the GitHub Actions quality job. No substitute owner or remote
+has been used.

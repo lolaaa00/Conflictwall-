@@ -10,6 +10,7 @@ available.
 from gltest import get_contract_factory, get_default_account
 from gltest.accounts import get_accounts
 from gltest.assertions import tx_execution_failed, tx_execution_succeeded
+from gltest.clients import get_gl_provider
 from gltest.types import TransactionStatus
 from gltest.utils import extract_contract_address
 import hashlib
@@ -19,6 +20,8 @@ from pathlib import Path
 import subprocess
 import time
 import urllib.request
+
+from genlayer_py.exceptions import GenLayerError
 
 WALL = "conflictwall.py"
 REGISTRY = "protected_engagement_registry.py"
@@ -30,6 +33,35 @@ TX_KW = {
     "wait_retries": 40,
     "wait_transaction_status": TransactionStatus.FINALIZED,
 }
+
+
+def install_transient_rpc_retries():
+    """Keep a temporary gateway response from stranding a signed transaction."""
+    provider = get_gl_provider()
+    original = provider.make_request
+
+    def retried(method, params):
+        for attempt in range(6):
+            try:
+                return original(method, params)
+            except GenLayerError as exc:
+                message = str(exc).lower()
+                transient = any(
+                    marker in message
+                    for marker in (
+                        "invalid json",
+                        "bad gateway",
+                        "gateway timeout",
+                        "request to",
+                        "temporarily unavailable",
+                        "too many requests",
+                    )
+                )
+                if not transient or attempt == 5:
+                    raise
+                time.sleep(2 ** attempt)
+
+    provider.make_request = retried
 
 
 def ok(receipt):
@@ -62,6 +94,7 @@ def deploy_finalized(factory, account, args=None):
 
 def test_conflictwall_history_dependent_gate():
     verify_chain()
+    install_transient_rpc_retries()
     account = get_default_account()
     candidates = [candidate for candidate in get_accounts() if candidate.address.lower() != account.address.lower()]
     assert candidates, "a second configured account is required for actor-isolation proof"
@@ -94,9 +127,26 @@ def test_conflictwall_history_dependent_gate():
         "lifecycle": {},
     }
 
+    evidence_path = os.environ.get("CONFLICTWALL_EVIDENCE_FILE")
+
+    def persist():
+        if not evidence_path:
+            return
+        output = Path(evidence_path)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        temporary = output.with_suffix(output.suffix + ".tmp")
+        temporary.write_text(
+            json.dumps(evidence, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        temporary.replace(output)
+
+    persist()
+
     def record(name, receipt, expect_success=True):
         (ok if expect_success else failed)(receipt)
         evidence["lifecycle"][name] = receipt["hash"]
+        persist()
         return receipt
 
     p = wall.create_policy(args=[
@@ -169,9 +219,4 @@ def test_conflictwall_history_dependent_gate():
     assert actor_b_item["classification_name"] == "PROTECTED"
     assert wall.get_exposure(args=[1, actor_b_account.address, 1]).call()["client_id"] == 2
 
-    evidence_path = os.environ.get("CONFLICTWALL_EVIDENCE_FILE")
-    if evidence_path:
-        output = Path(evidence_path)
-        output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(json.dumps(evidence, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print("CONFLICTWALL_LIVE_EVIDENCE=" + json.dumps(evidence, sort_keys=True))
